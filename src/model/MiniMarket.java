@@ -16,7 +16,8 @@ public class MiniMarket {
 		count = 0;
 		Calendar c = new GregorianCalendar();
 		day = (c.get(Calendar.DATE));
-		persons = new ArrayList<Person>(); 
+		persons = new ArrayList<Person>();
+		
 	}
 	
 	public void setName(String name) {
@@ -28,7 +29,7 @@ public class MiniMarket {
 		return name;
 	}
 	
-	public ArrayList<Person> getClients(){
+	public ArrayList<Person> getPersons(){
 		return persons;
 	}
 	
@@ -41,26 +42,25 @@ public class MiniMarket {
 	}
 	
 	public void Register(Person p) throws NoAgeException, NoDayException {
+	int penultimateNumber = Character.getNumericValue((p.getDocument().charAt((p.getDocument().length())-2)));
 		
 	if(p.getType().equalsIgnoreCase("TI")) {
-		
-		throw new NoAgeException();
-	}
-	
-	int penultimateNumber = Character.getNumericValue((p.getDocument().charAt((p.getDocument().length())-2)));
-	
-	if((penultimateNumber%2 == 0 && day%2 == 0) || (penultimateNumber%2 != 0 && day%2 != 0)) {
-		
-		throw new NoDayException();
-	}
-	
-	for(int i = 0; i<persons.size();i++) {
-		if(persons.get(i) == null) {
-			persons.add(i,p);
-		}
 			
-		}
+			throw new NoAgeException();
 	}
+	
+	else if((penultimateNumber%2 == 0 && day %2 == 0) || (penultimateNumber%2 != 0 && day%2 != 0)) {
+			
+		throw new NoDayException();
+		}
+		
+	else{
+		
+		persons.add(p);	
+	
+	}
+	}
+	
 	
 	public int getDay() {
 		return day;
