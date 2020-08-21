@@ -13,37 +13,39 @@ import org.junit.jupiter.api.Test;
 class MiniMarketTest {
 
 	private MiniMarket shop;
-	private Person p;
+	private Person p1;
+	private Person p2;
 	Calendar c = new GregorianCalendar();
 	String currentDay = Integer.toString((c.get(Calendar.DATE)));
-	String CorrectDay = Integer.toString(c.get(Calendar.DATE) + 11);
-	
+	String correctImparDay = Integer.toString(c.get(Calendar.DATE) + 10);
+	String correctParDay = Integer.toString(c.get(Calendar.DATE) + 20);
 	public void setupCorrectly() {
 		shop = new MiniMarket("SHOP");
 		//You maybe need change the number, because i use the class Day, put a correct number
-		p = new Person(CorrectDay,"CC");
-		
+		p1 = new Person(correctImparDay,"CC");
+		p2 = new Person(correctParDay,"CC");
 	}
 	
 	public void setupNoAge() {
 		shop = new MiniMarket("SHOP");
-		p = new Person("212634","TI");
+		p1 = new Person("212634","TI");
 		
 	}
 	
 	public void setupNoNumber() {
 		
 		shop = new MiniMarket("SHOP");
-		//You maybe need change the number, because i use the class Day, put an incorrect number
-		p = new Person(currentDay,"CC");
+		p1 = new Person(currentDay,"CC");
 	}
 	
 	@Test
 	public void testRegister1() {
 		setupCorrectly();
+		int onlyNumber = c.get(Calendar.DATE)/10;
+		if((c.get(Calendar.DATE) % 2 != 0 && onlyNumber == 1 || onlyNumber == 3) || c.get(Calendar.DATE) % 2 == 0 && onlyNumber == 2 ) {
 		try {
 			
-			shop.Register(p);
+			shop.Register(p1);
 			
 			assertEquals(1, shop.getPersons().size());
 			
@@ -58,6 +60,27 @@ class MiniMarketTest {
 			
 			fail(a.getMessage());
 		}
+		}
+		else {
+			try {
+				
+				shop.Register(p2);
+				
+				assertEquals(1, shop.getPersons().size());
+				
+			}
+			
+			catch(NoDayException d){
+				
+				fail(d.getMessage());
+				
+			}
+			catch(NoAgeException a) {
+				
+				fail(a.getMessage());
+			}
+			
+		}
 		
 	}
 	
@@ -66,7 +89,7 @@ class MiniMarketTest {
 		setupNoAge();
 		try {
 			
-			shop.Register(p);
+			shop.Register(p1);
 			
 			assertEquals(1, shop.getPersons().size());
 			
@@ -89,7 +112,7 @@ class MiniMarketTest {
 		setupNoNumber();
 		try {
 			
-			shop.Register(p);
+			shop.Register(p1);
 			
 			assertEquals(1, shop.getPersons().size());
 			

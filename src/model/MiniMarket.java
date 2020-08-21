@@ -42,8 +42,10 @@ public class MiniMarket {
 	}
 	
 	public void Register(Person p) throws NoAgeException, NoDayException {
-	int penultimateNumber = Character.getNumericValue((p.getDocument().charAt((p.getDocument().length())-2)));
 		
+	int penultimateNumber = Character.getNumericValue((p.getDocument().charAt((p.getDocument().length())-2)));
+
+	
 	if(p.getType().equalsIgnoreCase("TI")) {
 			
 			throw new NoAgeException();
@@ -56,9 +58,9 @@ public class MiniMarket {
 		
 	else{
 		
-		persons.add(p);	
-	
+		persons.add(p);		
 	}
+	
 	}
 	
 	
