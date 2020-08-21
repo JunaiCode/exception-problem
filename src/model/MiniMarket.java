@@ -11,7 +11,7 @@ public class MiniMarket {
 	private ArrayList<Person> persons;
 	
 	public MiniMarket(String name) {
-		
+		       
 		this.name = name;
 		count = 0;
 		Calendar c = new GregorianCalendar();

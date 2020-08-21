@@ -1,5 +1,7 @@
 package ui;
 import model.*;
+
+
 import java.util.Scanner;
 import exceptions.NoAgeException;
 import exceptions.NoDayException;
@@ -19,7 +21,6 @@ public class Main {
 		MiniMarket MiBarrio = new MiniMarket("Mi Barrio Te Quiere");
 		int option = 0; 
 		Scanner sc = new Scanner(System.in);
-		
 		do{
 		System.out.println("WELCOME TO THE MINIMARKET: " + MiBarrio.getName() + " " + "\n CHOOSE ANY OPTION: " + "\n 1: REGISTER A PERSON " + "\n 2: EXIT ");
 		System.out.println();
